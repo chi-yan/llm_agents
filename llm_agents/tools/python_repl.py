@@ -45,7 +45,7 @@ class PythonREPLTool(ToolInterface):
     python_repl: PythonREPL = Field(default_factory=_get_default_python_repl)
 
     def use(self, input_text: str) -> str:
-        input_text = re.sub(r'^.*[`]{3}.*\n?','',input_text)
+        input_text = input_text.strip().strip("```").strip("python")
         return self.python_repl.run(input_text)
 
 
